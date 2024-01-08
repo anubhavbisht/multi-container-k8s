@@ -13,7 +13,7 @@ spec:
         component: worker
     spec:
       containers:
-        - image: majinbisht/multi-client
+        - image: majinbisht/multi-worker
           name: worker
           env:
             - name: REDIS_HOST
