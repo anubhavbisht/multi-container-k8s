@@ -10,14 +10,6 @@ docker push majinbisht/multi-client-k8s:$SHA
 docker push majinbisht/multi-server-k8s:$SHA
 docker push majinbisht/multi-worker-k8s:$SHA
 
-echo "Testing**************************"
-gcloud auth activate-service-account --key-file service-account.json --quiet
-gcloud container clusters get-credentials multi-cluster
-kubectl config get-contexts
-echo "Printing kubeconfig content:"
-cat $HOME/.kube/config
-echo "Testing**************************"
-
 kubectl apply -f k8s
 kubectl set image deployments/server-deployment server=majinbisht/multi-server-k8s:$SHA
 kubectl set image deployments/client-deployment client=majinbisht/multi-client-k8s:$SHA

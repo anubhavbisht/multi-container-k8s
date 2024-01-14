@@ -22,6 +22,10 @@ install:
   - gcloud config set project multi-container-k8s-410914
   - gcloud config set compute/zone asia-south2-a
   - gcloud container clusters get-credentials multi-cluster
+  - gcloud components install gke-gcloud-auth-plugin
+  - gke-gcloud-auth-plugin --version
+  - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+  - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t majinbisht/react-test -f ./client/Dockerfile.dev ./client
 
