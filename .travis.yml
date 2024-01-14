@@ -17,7 +17,7 @@ before_install:
     
 install: 
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
-  - gcloud components update kubectl
+  - sudo apt-get install kubectl
   - gcloud auth activate-service-account --key-file service-account.json --quiet
   - gcloud config set project multi-container-k8s-410914
   - gcloud config set compute/zone asia-south2-a
