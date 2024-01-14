@@ -19,12 +19,11 @@ install:
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
   - sudo apt-get install -y kubectl
   - gcloud auth activate-service-account --key-file service-account.json --quiet
-  - gcloud config set project multi-container-k8s-410914
-  - gcloud config set compute/zone asia-south2-a
-  - gcloud container clusters get-credentials multi-cluster
   - gcloud components install gke-gcloud-auth-plugin
   - gke-gcloud-auth-plugin --version
   - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+  - gcloud config set project multi-container-k8s-410914
+  - gcloud config set compute/zone asia-south2-a
   - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t majinbisht/react-test -f ./client/Dockerfile.dev ./client
